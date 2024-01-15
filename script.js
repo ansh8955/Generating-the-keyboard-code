@@ -12,12 +12,20 @@ document.addEventListener('keydown', function(event) {
     const isCtrlPressed = event.ctrlKey;
 
     if (isCtrlPressed) { 
-        displayElement.innerHTML = `You pressed <span>CTRL + ${event.key}</span>`;
-    } else {
-        displayElement.innerHTML = `You pressed <span>${key}</span>`;
-    }
+        if(event.ctrlKey && event.key !== undefined)
 
-    keycodeElement.innerHTML = `<span>${keyCode}</span>`;
+        displayElement.innerHTML = `You pressed <span>CTRL + ${event.key}</span>`;
+        keycodeElement.innerHTML = `<span>${keyCode + 17}</span>`;
+    } 
+    else if(event.altKey && event.key !== undefined){
+        
+        displayElement.innerHTML = `You pressed <span>ALT + ${event.key}</span>`;
+        keycodeElement.innerHTML = `<span>${keyCode + 18}</span>`;
+    }
+    else {
+        displayElement.innerHTML = `You pressed <span>${key}</span>`;
+        keycodeElement.innerHTML = `<span>${keyCode}</span>`;
+    }
 
     // Add the pressed key to the history
     addToHistory(key);
